@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:personal_quiz_app/question.dart';
+
+import './question.dart';
+import './answer.dart';
 
 void main() => runApp(HomePage());
 
@@ -8,22 +12,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int questionIndex = 0;
+
   void testFunction() {
     print('button pressed');
     setState(() {
       questionIndex++;
     });
   }
-
-  var questions = [
-    'Question 1',
-    'Question 2',
-    'Question 3',
-    'Question 4',
-    'Question 5',
-  ];
-
-  int questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,48 +31,8 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              height: 50,
-              color: Colors.tealAccent,
-              child: Center(
-                child: Card(
-                  child: Text(
-                    questions[questionIndex],
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.tealAccent,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                RaisedButton(
-                  child: Text('increment 1'),
-                  onPressed: testFunction,
-                  color: Colors.lightGreen,
-                ),
-                RaisedButton(
-                  child: Text('increment 2'),
-                  onPressed: testFunction,
-                  color: Colors.lightGreen,
-                ),
-                RaisedButton(
-                  child: Text('increment 3'),
-                  onPressed: testFunction,
-                  color: Colors.lightGreen,
-                ),
-                RaisedButton(
-                  child: Text('increment 4'),
-                  onPressed: testFunction,
-                  color: Colors.lightGreen,
-                ),
-              ],
-            ),
+            Question(questionIndex),
+            Answer(questionIndex),
           ],
         ),
       ),
